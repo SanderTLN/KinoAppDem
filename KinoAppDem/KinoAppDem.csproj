@@ -58,6 +58,12 @@
     <Compile Include="FormKino.Designer.cs">
       <DependentUpon>FormKino.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTicket.Designer.cs">
+      <DependentUpon>FormTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
