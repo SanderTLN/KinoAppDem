@@ -47,8 +47,8 @@ namespace KinoAppDem
 
         private void BtnB_Click(object sender, EventArgs e)
         {
-            Form1 back = new Form1();
-            back.Show();
+            FormFilm films = new FormFilm();
+            films.Show();
             Hide();
         }
 
