@@ -18,21 +18,31 @@ namespace KinoAppDem
         ComboBox cBox;
         ListBox lBox;
         SqlCommand cmd;
-        SqlDataAdapter adapter;
+        SqlDataAdapter Hall_adapter;
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
         public Form1()
         {
             Height = 500;
             Width = 350;
             Text = "Выбор зала";
+            connection.Open();
+            Hall_adapter = new SqlDataAdapter("SELECT HallName FROM Halls", connection);
+            DataTable halls_table = new DataTable();
+            Hall_adapter.Fill(halls_table);
+            
 
             cBox = new ComboBox();
             cBox.Size = new Size(180, 20);
             cBox.Location = new Point(80, 60);
-            cBox.Items.Add("Выберите зал...");
-            cBox.Items.Add("Маленький зал");
-            cBox.Items.Add("Средний зал");
-            cBox.Items.Add("Большой зал");
+            foreach(DataRow row in halls_table.Rows)
+            {
+                cBox.Items.Add(row["HallName"]);
+            }
+            connection.Close();
+            //cBox.Items.Add("Выберите зал...");
+            //cBox.Items.Add("Маленький зал");
+            //cBox.Items.Add("Средний зал");
+            //cBox.Items.Add("Большой зал");
             cBox.DropDownStyle = ComboBoxStyle.DropDownList;
             cBox.SelectedIndex = 0;
             Controls.Add(cBox);
