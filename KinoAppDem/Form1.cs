@@ -14,6 +14,7 @@ namespace KinoAppDem
     public partial class Form1 : Form
     {
         int i, j;
+        Label lbl;
         Button btnC, btnB;
         ComboBox cBox;
         ListBox lBox;
@@ -31,11 +32,16 @@ namespace KinoAppDem
             Hall_adapter = new SqlDataAdapter("SELECT * FROM Halls", connection);
             DataTable halls_table = new DataTable();
             Hall_adapter.Fill(halls_table);
-            
+
+            lbl = new Label();
+            lbl.Text = "Select a hall:";
+            lbl.Size = new Size(70, 20);
+            lbl.Location = new Point(10, 64);
+            Controls.Add(lbl);
+
             cBox = new ComboBox();
             cBox.Size = new Size(180, 20);
             cBox.Location = new Point(80, 60);
-            cBox.Items.Add("Select a hall..");
             foreach(DataRow row in halls_table.Rows)
             {
                 cBox.Items.Add(row["HallName"]);
@@ -87,27 +93,11 @@ namespace KinoAppDem
 
         private void BtnC_Click(object sender, EventArgs e)
         {
-            if(cBox.SelectedIndex == 1)
-            {
-                i = row_list[0]; j = places_list[0];
-                FormKino hall = new FormKino(i, j);
-                hall.Show();
-                Hide();
-            }
-            else if(cBox.SelectedIndex == 2)
-            {
-                i = row_list[1]; j = places_list[1];
-                FormKino hall = new FormKino(i, j);
-                hall.Show();
-                Hide();
-            }
-            else if (cBox.SelectedIndex == 3)
-            {
-                i = row_list[2]; j = places_list[2];
-                FormKino hall = new FormKino(i, j);
-                hall.Show();
-                Hide();
-            }
+            i = row_list[cBox.SelectedIndex];
+            j = places_list[cBox.SelectedIndex];
+            FormKino hall = new FormKino(i, j);
+            hall.Show();
+            Hide();
         }
     }
 }
