@@ -17,7 +17,7 @@ namespace KinoAppDem
         {
             Height = 400;
             Width = 800;
-            Text = "Выбор фильма";
+            Text = "Film select";
 
             btn1 = new Button();
             btn1.Size = new Size(200, 200);

@@ -20,32 +20,32 @@ namespace KinoAppDem
         {
             Height = 140;
             Width = 300;
-            Text = "Покупка";
+            Text = "Purchase";
 
             lblM = new Label();
-            lblM.Text = "Почта:";
-            lblM.Size = new Size(50, 20);
+            lblM.Text = "Mail:";
+            lblM.Size = new Size(30, 20);
             lblM.Location = new Point(10, 20);
             Controls.Add(lblM);
 
             lblP = new Label();
-            lblP.Text = "Пароль:";
-            lblP.Size = new Size(50, 20);
+            lblP.Text = "Password:";
+            lblP.Size = new Size(60, 20);
             lblP.Location = new Point(10, 60);
             Controls.Add(lblP);
 
             txtM = new TextBox();
-            txtM.Size = new Size(120, 20);
-            txtM.Location = new Point(60, 20);
+            txtM.Size = new Size(140, 20);
+            txtM.Location = new Point(45, 17);
             Controls.Add(txtM);
 
             txtP = new TextBox();
-            txtP.Size = new Size(120, 20);
-            txtP.Location = new Point(60, 60);
+            txtP.Size = new Size(115, 20);
+            txtP.Location = new Point(70, 57);
             Controls.Add(txtP);
 
             btn = new Button();
-            btn.Text = "Купить";
+            btn.Text = "Buy";
             btn.Size = new Size(70, 80);
             btn.Location = new Point(200, 10);
             btn.Click += Btn_Click;
