@@ -18,7 +18,6 @@ namespace KinoAppDem
         Button btnC, btnB;
         ComboBox cBox;
         ListBox lBox;
-        SqlCommand cmd;
         SqlDataAdapter Hall_adapter;
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
         int[] row_list;
@@ -27,7 +26,7 @@ namespace KinoAppDem
         {
             Height = 500;
             Width = 350;
-            Text = "Hall selection";
+            BackColor = Color.Wheat;
             connection.Open();
             Hall_adapter = new SqlDataAdapter("SELECT * FROM Halls", connection);
             DataTable halls_table = new DataTable();
@@ -73,6 +72,7 @@ namespace KinoAppDem
             btnC.Text = "Continue";
             btnC.Size = new Size(120, 40);
             btnC.Location = new Point(110, 400);
+            btnC.BackColor = Color.LightGray;
             btnC.Click += BtnC_Click;
             Controls.Add(btnC);
 
@@ -80,6 +80,7 @@ namespace KinoAppDem
             btnB.Text = "Back";
             btnB.Size = new Size(80, 30);
             btnB.Location = new Point(10, 10);
+            btnB.BackColor = Color.LightGray;
             btnB.Click += BtnB_Click;
             Controls.Add(btnB);
         }

@@ -21,6 +21,7 @@ namespace KinoAppDem
             _arr = new Label[i_, j_];
             Size = new Size(i_ * 60 + 80, j_ * 55 + 80);
             Text = "Hall";
+            BackColor = Color.Wheat;
             for (i = 0; i < i_; i++)
             {
                 for (j = 0; j < j_; j++)
@@ -42,6 +43,7 @@ namespace KinoAppDem
             btnB.Text = "Back";
             btnB.Size = new Size(80, 30);
             btnB.Location = new Point(j * 55, i * 56);
+            btnB.BackColor = Color.LightGray;
             btnB.Click += BtnB_Click;
             Controls.Add(btnB);
         }

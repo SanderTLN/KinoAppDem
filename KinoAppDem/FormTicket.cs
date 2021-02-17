@@ -21,6 +21,7 @@ namespace KinoAppDem
             Height = 140;
             Width = 300;
             Text = "Purchase";
+            BackColor = Color.Wheat;
 
             lblM = new Label();
             lblM.Text = "Mail:";
@@ -48,6 +49,7 @@ namespace KinoAppDem
             btn.Text = "Buy";
             btn.Size = new Size(70, 80);
             btn.Location = new Point(200, 10);
+            btn.BackColor = Color.LightGray;
             btn.Click += Btn_Click;
             Controls.Add(btn);
         }
