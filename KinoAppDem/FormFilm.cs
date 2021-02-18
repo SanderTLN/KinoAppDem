@@ -14,8 +14,9 @@ namespace KinoAppDem
     public partial class FormFilm : Form
     {
         Button btn1, btn2, btn3;
-        Label lbl1, lbl2, lbl3;
+        Label lbl1, lbl2, lbl3, lbl4;
         ComboBox cBox;
+        SqlCommand cmd;
         SqlDataAdapter Film_adapter;
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
         public FormFilm()
@@ -25,7 +26,7 @@ namespace KinoAppDem
             Text = "Film select";
             BackColor = Color.Wheat;
             connection.Open();
-            Film_adapter = new SqlDataAdapter("SELECT Genre FROM Film", connection);
+            Film_adapter = new SqlDataAdapter("SELECT * FROM Film", connection);
             DataTable films_table = new DataTable();
             Film_adapter.Fill(films_table);
 
@@ -54,26 +55,35 @@ namespace KinoAppDem
             Controls.Add(btn3);
 
             lbl1 = new Label();
-            lbl1.Text = "Terminator";
+            cmd = new SqlCommand("SELECT Name FROM Film WHERE id=1", connection);
+            lbl1.Text = cmd.ExecuteScalar().ToString();
             lbl1.Size = new Size(70, 20);
             lbl1.Location = new Point(100, 270);
             Controls.Add(lbl1);
 
             lbl2 = new Label();
-            lbl2.Text = "Fast and Furious";
+            cmd = new SqlCommand("SELECT Name FROM Film WHERE id=2", connection);
+            lbl2.Text = cmd.ExecuteScalar().ToString();
             lbl2.Size = new Size(90, 20);
             lbl2.Location = new Point(350, 270);
             Controls.Add(lbl2);
 
             lbl3 = new Label();
-            lbl3.Text = "Transformers";
+            cmd = new SqlCommand("SELECT Name FROM Film WHERE id=3", connection);
+            lbl3.Text = cmd.ExecuteScalar().ToString();
             lbl3.Size = new Size(70, 20);
             lbl3.Location = new Point(620, 270);
             Controls.Add(lbl3);
 
+            lbl4 = new Label();
+            lbl4.Text = "Choose genre:";
+            lbl4.Size = new Size(80, 20);
+            lbl4.Location = new Point(260, 23);
+            Controls.Add(lbl4);
+
             cBox = new ComboBox();
             cBox.Size = new Size(180, 20);
-            cBox.Location = new Point(350, 20);
+            cBox.Location = new Point(340, 20);
             foreach (DataRow row in films_table.Rows)
             {
                 cBox.Items.Add(row["Genre"]);
@@ -88,7 +98,10 @@ namespace KinoAppDem
         {
             Form1 kino = new Form1();
             kino.Show();
-            kino.Text = "Transformers";
+            cmd = new SqlCommand("SELECT Name FROM Film WHERE id=3", connection);
+            connection.Open();
+            kino.Text = cmd.ExecuteScalar().ToString();
+            connection.Close();
             Hide();
         }
 
@@ -96,7 +109,10 @@ namespace KinoAppDem
         {
             Form1 kino = new Form1();
             kino.Show();
-            kino.Text = "Fast and Furious";
+            cmd = new SqlCommand("SELECT Name FROM Film WHERE id=2", connection);
+            connection.Open();
+            kino.Text = cmd.ExecuteScalar().ToString();
+            connection.Close();
             Hide();
         }
 
@@ -104,7 +120,10 @@ namespace KinoAppDem
         {
             Form1 kino = new Form1();
             kino.Show();
-            kino.Text = "Terminator";
+            cmd = new SqlCommand("SELECT Name FROM Film WHERE id=1", connection);
+            connection.Open();
+            kino.Text = cmd.ExecuteScalar().ToString();
+            connection.Close();
             Hide();
         }
     }
