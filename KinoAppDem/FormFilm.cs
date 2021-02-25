@@ -33,7 +33,7 @@ namespace KinoAppDem
             btn1 = new Button();
             btn1.Size = new Size(200, 200);
             btn1.Location = new Point(30, 50);
-            btn1.BackgroundImage = Image.FromFile(@"C:\Users\opilane\source\repos\Demihhovski\KinoAppDem\KinoAppDem\Images\Terminator.png");
+            btn1.BackgroundImage = Image.FromFile("../../Images/Terminator.png");
             btn1.BackgroundImageLayout = ImageLayout.Stretch;
             btn1.Click += Btn1_Click;
             Controls.Add(btn1);
@@ -41,7 +41,7 @@ namespace KinoAppDem
             btn2 = new Button();
             btn2.Size = new Size(200, 200);
             btn2.Location = new Point(290, 50);
-            btn2.BackgroundImage = Image.FromFile(@"C:\Users\opilane\source\repos\Demihhovski\KinoAppDem\KinoAppDem\Images\FastFurious.png");
+            btn2.BackgroundImage = Image.FromFile("../../Images/FastFurious.png");
             btn2.BackgroundImageLayout = ImageLayout.Stretch;
             btn2.Click += Btn2_Click;
             Controls.Add(btn2);
@@ -49,7 +49,7 @@ namespace KinoAppDem
             btn3 = new Button();
             btn3.Size = new Size(200, 200);
             btn3.Location = new Point(550, 50);
-            btn3.BackgroundImage = Image.FromFile(@"C:\Users\opilane\source\repos\Demihhovski\KinoAppDem\KinoAppDem\Images\Transformers.png");
+            btn3.BackgroundImage = Image.FromFile("../../Images/Transformers.png");
             btn3.BackgroundImageLayout = ImageLayout.Stretch;
             btn3.Click += Btn3_Click;
             Controls.Add(btn3);
@@ -74,24 +74,25 @@ namespace KinoAppDem
             lbl3.Size = new Size(70, 20);
             lbl3.Location = new Point(620, 270);
             Controls.Add(lbl3);
-
-            lbl4 = new Label();
-            lbl4.Text = "Choose genre:";
-            lbl4.Size = new Size(80, 20);
-            lbl4.Location = new Point(260, 23);
-            Controls.Add(lbl4);
-
-            cBox = new ComboBox();
-            cBox.Size = new Size(180, 20);
-            cBox.Location = new Point(340, 20);
-            foreach (DataRow row in films_table.Rows)
-            {
-                cBox.Items.Add(row["Genre"]);
-            }
             connection.Close();
-            cBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            cBox.SelectedIndex = 0;
-            Controls.Add(cBox);
+
+            //lbl4 = new Label();
+            //lbl4.Text = "Choose genre:";
+            //lbl4.Size = new Size(80, 20);
+            //lbl4.Location = new Point(260, 23);
+            //Controls.Add(lbl4);
+
+            //cBox = new ComboBox();
+            //cBox.Size = new Size(180, 20);
+            //cBox.Location = new Point(340, 20);
+            //foreach (DataRow row in films_table.Rows)
+            //{
+            //    cBox.Items.Add(row["Genre"]);
+            //}
+            //connection.Close();
+            //cBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cBox.SelectedIndex = 0;
+            //Controls.Add(cBox);
         }
 
         private void Btn3_Click(object sender, EventArgs e)

@@ -22,6 +22,10 @@ namespace KinoAppDem
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
         int[] row_list;
         int[] places_list;
+        public string FormHeaderText
+        {
+            set { Text = value; }
+        }
         public Form1()
         {
             Height = 500;
