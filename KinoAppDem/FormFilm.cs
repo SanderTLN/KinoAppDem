@@ -14,9 +14,8 @@ namespace KinoAppDem
     public partial class FormFilm : Form
     {
         Button btn1, btn2, btn3;
-        Label lbl1, lbl2, lbl3, lbl4;
-        ComboBox cBox;
-        SqlCommand cmd;
+        Label lbl1, lbl2, lbl3;
+        SqlCommand cmd, cmdD, cmdT;
         SqlDataAdapter Film_adapter;
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
         public FormFilm()
@@ -64,8 +63,8 @@ namespace KinoAppDem
             lbl2 = new Label();
             cmd = new SqlCommand("SELECT Name FROM Film WHERE id=2", connection);
             lbl2.Text = cmd.ExecuteScalar().ToString();
-            lbl2.Size = new Size(90, 20);
-            lbl2.Location = new Point(350, 270);
+            lbl2.Size = new Size(130, 20);
+            lbl2.Location = new Point(327, 270);
             Controls.Add(lbl2);
 
             lbl3 = new Label();
@@ -75,32 +74,17 @@ namespace KinoAppDem
             lbl3.Location = new Point(620, 270);
             Controls.Add(lbl3);
             connection.Close();
-
-            //lbl4 = new Label();
-            //lbl4.Text = "Choose genre:";
-            //lbl4.Size = new Size(80, 20);
-            //lbl4.Location = new Point(260, 23);
-            //Controls.Add(lbl4);
-
-            //cBox = new ComboBox();
-            //cBox.Size = new Size(180, 20);
-            //cBox.Location = new Point(340, 20);
-            //foreach (DataRow row in films_table.Rows)
-            //{
-            //    cBox.Items.Add(row["Genre"]);
-            //}
-            //connection.Close();
-            //cBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            //cBox.SelectedIndex = 0;
-            //Controls.Add(cBox);
         }
 
         private void Btn3_Click(object sender, EventArgs e)
         {
-            Form1 kino = new Form1();
-            kino.Show();
+            
             cmd = new SqlCommand("SELECT Name FROM Film WHERE id=3", connection);
+            cmdD = new SqlCommand("SELECT Description FROM Film WHERE id=3", connection);
+            cmdT = new SqlCommand("SELECT Session FROM Film WHERE id=3", connection);
             connection.Open();
+            Form1 kino = new Form1(cmd.ExecuteScalar().ToString(), cmdD.ExecuteScalar().ToString(), cmdT.ExecuteScalar().ToString());
+            kino.Show();
             kino.Text = cmd.ExecuteScalar().ToString();
             connection.Close();
             Hide();
@@ -108,10 +92,13 @@ namespace KinoAppDem
 
         private void Btn2_Click(object sender, EventArgs e)
         {
-            Form1 kino = new Form1();
-            kino.Show();
+            
             cmd = new SqlCommand("SELECT Name FROM Film WHERE id=2", connection);
+            cmdD = new SqlCommand("SELECT Description FROM Film WHERE id=2", connection);
+            cmdT = new SqlCommand("SELECT Session FROM Film WHERE id=2", connection);
             connection.Open();
+            Form1 kino = new Form1(cmd.ExecuteScalar().ToString(), cmdD.ExecuteScalar().ToString(), cmdT.ExecuteScalar().ToString());
+            kino.Show();
             kino.Text = cmd.ExecuteScalar().ToString();
             connection.Close();
             Hide();
@@ -119,10 +106,12 @@ namespace KinoAppDem
 
         private void Btn1_Click(object sender, EventArgs e)
         {
-            Form1 kino = new Form1();
-            kino.Show();
             cmd = new SqlCommand("SELECT Name FROM Film WHERE id=1", connection);
+            cmdD = new SqlCommand("SELECT Description FROM Film WHERE id=1", connection);
+            cmdT = new SqlCommand("SELECT Session FROM Film WHERE id=1", connection);
             connection.Open();
+            Form1 kino = new Form1(cmd.ExecuteScalar().ToString(), cmdD.ExecuteScalar().ToString(), cmdT.ExecuteScalar().ToString());
+            kino.Show();
             kino.Text = cmd.ExecuteScalar().ToString();
             connection.Close();
             Hide();

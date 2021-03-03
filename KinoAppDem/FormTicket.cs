@@ -24,25 +24,25 @@ namespace KinoAppDem
             BackColor = Color.Wheat;
 
             lblM = new Label();
-            lblM.Text = "Mail:";
-            lblM.Size = new Size(30, 20);
+            lblM.Text = "Name:";
+            lblM.Size = new Size(40, 20);
             lblM.Location = new Point(10, 20);
             Controls.Add(lblM);
 
             lblP = new Label();
-            lblP.Text = "Password:";
-            lblP.Size = new Size(60, 20);
-            lblP.Location = new Point(10, 60);
+            lblP.Text = "Email:";
+            lblP.Size = new Size(40, 20);
+            lblP.Location = new Point(10, 63);
             Controls.Add(lblP);
 
             txtM = new TextBox();
             txtM.Size = new Size(140, 20);
-            txtM.Location = new Point(45, 17);
+            txtM.Location = new Point(50, 17);
             Controls.Add(txtM);
 
             txtP = new TextBox();
-            txtP.Size = new Size(115, 20);
-            txtP.Location = new Point(70, 57);
+            txtP.Size = new Size(140, 20);
+            txtP.Location = new Point(50, 60);
             Controls.Add(txtP);
 
             btn = new Button();

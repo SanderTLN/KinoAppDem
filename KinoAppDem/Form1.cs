@@ -22,11 +22,7 @@ namespace KinoAppDem
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
         int[] row_list;
         int[] places_list;
-        public string FormHeaderText
-        {
-            set { Text = value; }
-        }
-        public Form1()
+        public Form1(string _cmd, string dis, string tim)
         {
             Height = 500;
             Width = 350;
@@ -59,9 +55,6 @@ namespace KinoAppDem
                 places_list[a] = (int)row["Places"];
                 a = a + 1;
             }
-            //cBox.Items.Add("Small");
-            //cBox.Items.Add("Medium");
-            //cBox.Items.Add("Large");
             connection.Close();
             cBox.DropDownStyle = ComboBoxStyle.DropDownList;
             cBox.SelectedIndex = 0;
@@ -78,58 +71,24 @@ namespace KinoAppDem
             Film_adapter = new SqlDataAdapter("SELECT * FROM Film", connection);
             DataTable films_table = new DataTable();
             Film_adapter.Fill(films_table);
-            if (Text == "Terminator")
-            {
-                cmd = new SqlCommand("SELECT Description FROM Film WHERE id=1", connection);
-                lblDT.Text = cmd.ExecuteScalar().ToString();
-            }
-            else if (Text == "Fast and Furious")
-            {
-                cmd = new SqlCommand("SELECT Description FROM Film WHERE id=2", connection);
-                lblDT.Text = cmd.ExecuteScalar().ToString();
-            }
-            else if (Text == "Transformers")
-            {
-                cmd = new SqlCommand("SELECT Description FROM Film WHERE id=3", connection);
-                lblDT.Text = cmd.ExecuteScalar().ToString();
-            }
-            else
-            {
-                lblDT.Text = "Description error";
-            }
-            lblDT.Size = new Size(180, 100);
+            cmd = new SqlCommand("SELECT Description FROM Film WHERE Name=" + _cmd, connection);
+            lblDT.Text = dis;
+            lblDT.Size = new Size(180, 150);
             lblDT.Location = new Point(105, 100);
             Controls.Add(lblDT);
 
             lblS = new Label();
             lblS.Text = "Session time:";
             lblS.Size = new Size(70, 20);
-            lblS.Location = new Point(35, 220);
+            lblS.Location = new Point(35, 250);
             Controls.Add(lblS);
 
             lblST = new Label();
-            if (Text == "Terminator")
-            {
-                cmd = new SqlCommand("SELECT Session FROM Film WHERE id=1", connection);
-                lblST.Text = cmd.ExecuteScalar().ToString();
-            }
-            else if (Text == "Fast and Furious")
-            {
-                cmd = new SqlCommand("SELECT Session FROM Film WHERE id=2", connection);
-                lblST.Text = cmd.ExecuteScalar().ToString();
-            }
-            else if (Text == "Transformers")
-            {
-                cmd = new SqlCommand("SELECT Session FROM Film WHERE id=3", connection);
-                lblST.Text = cmd.ExecuteScalar().ToString();
-            }
-            else
-            {
-                lblST.Text = "Time error";
-            }
+            cmd = new SqlCommand("SELECT Session FROM Film WHERE Name=" + _cmd, connection);
+            lblST.Text = tim;
             connection.Close();
             lblST.Size = new Size(70, 20);
-            lblST.Location = new Point(105, 220);
+            lblST.Location = new Point(105, 250);
             Controls.Add(lblST);
 
             btnC = new Button();
