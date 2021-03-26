@@ -16,8 +16,15 @@ namespace KinoAppDem
         int i, j;
         Label[,] _arr;
         Button btnB;
-        public FormKino(int i_, int j_)
+        SqlCommand cmd;
+        SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
+        string filmI;
+        string hallI;
+
+        public FormKino(int i_, int j_, string film, string hall)
         {
+            filmI = film;
+            hallI = hall;
             _arr = new Label[i_, j_];
             Size = new Size(i_ * 60 + 80, j_ * 55 + 80);
             Text = "Hall";
@@ -68,11 +75,18 @@ namespace KinoAppDem
             {
                 if(MessageBox.Show("Are you sure you want to book this place?", "Booking", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    FormTicket ticket = new FormTicket();
-                    ticket.Show();
-                    //_arr[tag[0], tag[1]].Text = "Booked";
-                    //_arr[tag[0], tag[1]].BackColor = Color.DarkRed;
-                    //MessageBox.Show("Row: " + (tag[0] + 1) + ", place: " + (tag[1] + 1) + " - successfully booked!");
+                    //FormTicket ticket = new FormTicket();
+                    //ticket.Show();
+                    connection.Open();
+                    cmd = new SqlCommand("INSERT INTO Ticket(FilmId, HallId, Row, Place) VALUES(@film, @hall, @row, @place)", connection);
+                    cmd.Parameters.AddWithValue("@film", filmI);
+                    cmd.Parameters.AddWithValue("@hall", hallI);
+                    cmd.Parameters.AddWithValue("@row", (tag[0] + 1));
+                    cmd.Parameters.AddWithValue("@place", (tag[1] + 1));
+                    connection.Close();
+                    _arr[tag[0], tag[1]].Text = "Booked";
+                    _arr[tag[0], tag[1]].BackColor = Color.DarkRed;
+                    MessageBox.Show("Row: " + (tag[0] + 1) + ", place: " + (tag[1] + 1) + " - successfully booked!");
                 }
                 else
                 {

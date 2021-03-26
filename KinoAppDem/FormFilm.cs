@@ -78,7 +78,6 @@ namespace KinoAppDem
 
         private void Btn3_Click(object sender, EventArgs e)
         {
-            
             cmd = new SqlCommand("SELECT Name FROM Film WHERE id=3", connection);
             cmdD = new SqlCommand("SELECT Description FROM Film WHERE id=3", connection);
             cmdT = new SqlCommand("SELECT Session FROM Film WHERE id=3", connection);
@@ -92,7 +91,6 @@ namespace KinoAppDem
 
         private void Btn2_Click(object sender, EventArgs e)
         {
-            
             cmd = new SqlCommand("SELECT Name FROM Film WHERE id=2", connection);
             cmdD = new SqlCommand("SELECT Description FROM Film WHERE id=2", connection);
             cmdT = new SqlCommand("SELECT Session FROM Film WHERE id=2", connection);

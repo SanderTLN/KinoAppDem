@@ -17,13 +17,16 @@ namespace KinoAppDem
         Label lblH, lblD, lblDT, lblS, lblST;
         Button btnC, btnB;
         ComboBox cBox;
-        SqlCommand cmd;
+        SqlCommand cmd, cmdh;
         SqlDataAdapter Hall_adapter, Film_adapter;
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\DataKino.mdf; Integrated Security = True");
         int[] row_list;
         int[] places_list;
+        string cmdf;
+
         public Form1(string _cmd, string dis, string tim)
         {
+            cmdf = _cmd;
             Height = 500;
             Width = 350;
             BackColor = Color.Wheat;
@@ -119,8 +122,13 @@ namespace KinoAppDem
         {
             i = row_list[cBox.SelectedIndex];
             j = places_list[cBox.SelectedIndex];
-            FormKino hall = new FormKino(i, j);
+            connection.Open();
+            cmd = new SqlCommand("SELECT Id FROM Film WHERE Name=" + cmdf, connection);
+            cmdh = new SqlCommand("SELECT Id FROM Halls WHERE HallName=" + cBox.SelectedItem.ToString(), connection);
+            FormKino hall = new FormKino(i, j, cmd.ExecuteScalar().ToString(), cmdh.ExecuteScalar().ToString());
             hall.Show();
+            hall.Text = cmdf + " " + cBox.SelectedItem.ToString() + " Hall";
+            connection.Close();
             Hide();
         }
     }

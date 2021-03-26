@@ -13,7 +13,7 @@ namespace KinoAppDem
 {
     public partial class FormTicket : Form
     {
-        Label lblM, lblP;
+        Label lblN, lblM;
         TextBox txtM, txtP;
         Button btn;
         public FormTicket()
@@ -23,17 +23,17 @@ namespace KinoAppDem
             Text = "Purchase";
             BackColor = Color.Wheat;
 
-            lblM = new Label();
-            lblM.Text = "Name:";
-            lblM.Size = new Size(40, 20);
-            lblM.Location = new Point(10, 20);
-            Controls.Add(lblM);
+            lblN = new Label();
+            lblN.Text = "Name:";
+            lblN.Size = new Size(40, 20);
+            lblN.Location = new Point(10, 20);
+            Controls.Add(lblN);
 
-            lblP = new Label();
-            lblP.Text = "Email:";
-            lblP.Size = new Size(40, 20);
-            lblP.Location = new Point(10, 63);
-            Controls.Add(lblP);
+            lblM = new Label();
+            lblM.Text = "Email:";
+            lblM.Size = new Size(40, 20);
+            lblM.Location = new Point(10, 63);
+            Controls.Add(lblM);
 
             txtM = new TextBox();
             txtM.Size = new Size(140, 20);
